@@ -27,6 +27,7 @@ class App extends Component {
 							<li><Link to="/news">News</Link></li>
 							<li><Link to="/home">Home</Link></li>
 						</ul>
+						<Route exact path="/" component={Home}/>
 						<Route path="/home" component={Home}/>
 						<Route exact path="/weather" component={Weather}/>
 						<Route exact path="/news" component={News}/>
@@ -34,6 +35,7 @@ class App extends Component {
 					</div>
 				</Router>
 			</div>
+			
 		)
 	}
 }
@@ -44,13 +46,16 @@ class Home extends Component {
 	render() {
 		return (
 			<div className="topsection">
-				<h3><img src={logo} width="30px" alt="logo"/>Welcome to a simple react app. </h3>
+				<h3>
+					Welcome to a simple react app. </h3>
 				<p>You can display the weather <Link to="/weather">Weather</Link> or read the New York Times
 					<Link to="/news">News</Link> feed.
 				</p>
+				
 				<p>
 					For information about this litle app check the <Link to="/about">About</Link> page.
 				</p>
+				<img src={logo} width="30px" alt="logo"/>
 			</div>
 		
 		)
