@@ -7,11 +7,16 @@ class Weather extends Component {
 		
 		this.state = {
 			temp : '',
-			humid : 0,
+			uv: '',
+			visibility: '',
+			feelslike: '',
+			humidity: '',
 			icon: '',
 			wind: '',
 			time: '',
+			weather: '',
 			location: '',
+			dewpoint: '',
 			url :'http://api.wunderground.com/api/80dca8463834e03c/conditions/q/CA/Los_Angeles.json'
 			//url :'https://newsapi.org/v2/top-headlines -G -d country=us -d apiKey=41596add1e7a4a5180abedd88bec4bdf'
 		};
@@ -22,13 +27,16 @@ class Weather extends Component {
 				<h4>Weather for {this.state.location} </h4>
 				
 				<ul className="nobullets">
-					<li>{this.state.location}</li>
+					<li><img src={this.state.icon} width="100px" alt="weather"/></li>
+					<li>UV index is {this.state.uv}</li>
+					<li>Weather is {this.state.weather}</li>
+					<li>Visibility {this.state.visibility} miles</li>
+					<li>Temperature {this.state.temp}</li>
+					<li>Feels like {this.state.feelslike}</li>
+					<li>Humidity {this.state.humidity}</li>
+					<li>Dewpoint {this.state.dewpoint}</li>
+					<li>Wind {this.state.wind}</li>
 					<li>{this.state.time}</li>
-					<li><img src={this.state.icon} width="100px"/></li>
-					<li>{this.state.temp}</li>
-					<li>{this.state.temp}</li>
-					<li>{this.state.humid}</li>
-					<li>{this.state.wind}</li>
 				</ul>
 			
 			</div>
@@ -37,18 +45,22 @@ class Weather extends Component {
 	componentDidMount() {
 		axios.get(this.state.url)
 			.then(res => {
-				console.log(res.data.current_observation);
 				let w = res.data.current_observation;
-				
-				this.setState({image_url: res.data.current_observation.image.url});
-				this.setState({location: res.data.current_observation.display_location.full});
-				this.setState({time: res.data.current_observation.local_time_rfc822});
+				console.log(w, w.visibility_mi);
+
+				this.setState({dewpoint: w.dewpoint_string});
+				this.setState({image_url: w.image.url});
+				this.setState({location: w.display_location.full});
+				this.setState({time: w.observation_time});
 				this.setState({temp: w.temperature_string});
-				this.setState({humid: w.relative_humidity});
-				this.setState({wind: w.wind_mph + ' ' + w.wind_dir});
+				this.setState({uv: w.UV});
+				this.setState({feelslike: w.feelslike_string});
+				this.setState({humidity: w.relative_humidity});
+				this.setState({weather: w.weather});
+				this.setState({wind: w.wind_string});
 				this.setState({icon: w.icon_url});
-				//const posts = res.data.data.children.map(obj => obj.data);
-				//this.setState({ posts });
+				this.setState({visibility: w.visibility_mi});
+
 			});
 	}
 }

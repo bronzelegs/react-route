@@ -38,7 +38,7 @@ ul.navbar li a  {
   display: block;
   color: #222222;
   text-align: center;
-  padding: 14px 16px;
+  padding: 15px 15px;
   text-decoration: none;
   border: 2px #222222;
 }
@@ -59,3 +59,4 @@ ul.navbar .branding {
   margin: 1em;
   font-weight: 400;
 }
+
