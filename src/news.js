@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import './News.css';
+import './news.css';
 
 class News extends Component {
 	constructor(props) {
@@ -15,25 +15,27 @@ class News extends Component {
 	
 	render() {
 		return (
-			<div className="section">
+			<div className="section news">
 				<h4>Top News from NYT</h4>
 				{this.state.stories.map(item =>
-					<div>
+					<div key={item.asset_id}>
+						<a href={item.url}> {item.title}</a>
 						<p>
-							<a href={item.url}> {item.title}</a>
-							<p>
-								{item.byline} {item.publish_date} in {item.source} {item.section}
-							</p>
-							<p>
-								{item.abstract}
-							</p>
+							{item.byline.toLowerCase().split(' ').map(word =>
+								word[0].toUpperCase() + word.substr(1)
+							).join(' ')
+							}
+							{item.publish_date} in {item.source} {item.section}
+						</p>
+						<p>
+							{item.abstract}
 						</p>
 						<p>
 							{item.media.map(media =>
 								<img src={media['media-metadata'][2].url} alt={media.caption}/>
 							)}
 						</p>
-					
+						<hr/>
 					</div>
 				)}
 			</div>

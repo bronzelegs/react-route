@@ -1,19 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:100i,300,300i,400,400i,700,700i,900,900i');
 
-
 body {
   padding: 5px;
   margin: 15px;
   font-family: 'Lato', sans-serif;
   font-weight: 200;
+  font-size: 14px;
 }
 
 .section {
   margin: 20px;
 }
+
 .topsection {
   margin: 10px;
 }
+
+.about {
+  border: 1px solid #222222;
+  padding: 15px;
+}
+
 .app-title {
   font-size: 1.5em;
 }
@@ -38,9 +45,14 @@ ul.navbar li a  {
   display: block;
   color: #222222;
   text-align: center;
-  padding: 15px 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  
+
   text-decoration: none;
-  border: 2px #222222;
+  border-left: 1px solid white;
 }
 
 ul.navbar li a:hover  {
@@ -56,7 +68,20 @@ ul.navbar  {
 
 ul.navbar .branding {
   float: left;
-  margin: 1em;
+  margin: 0.5em;
   font-weight: 400;
 }
 
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  display: block;
+  width:80%;
+  margin: auto;
+
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
