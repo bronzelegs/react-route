@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import './weather.css';
+import {Card, Icon, Item, Image} from 'semantic-ui-react'
 
 class Weather extends Component {
 	constructor(props) {
@@ -26,7 +27,7 @@ class Weather extends Component {
 	render() {
 		return (
 			<div className="section weather">
-				<h4>Weather for {this.state.location} </h4>
+				<h2>Weather for {this.state.location} </h2>
 				<p className="weatherPanel">
 					<ul className="nobullets">
 						<li><img src={this.state.icon} width="100px" alt="weather"/></li>
@@ -45,6 +46,35 @@ class Weather extends Component {
 			</div>
 		)
 	}
+	
+	render_not(){
+		return (
+		<Card>
+			<Image src={this.state.icon} alt='weather' width="60%" />
+			<Card.Content>
+				<Card.Header>
+					Weather for {this.state.location}
+				</Card.Header>
+				<Card.Description>
+					<ul>
+						<li>UV index is {this.state.uv}</li>
+						<li>Weather is {this.state.weather}</li>
+						<li>Visibility {this.state.visibility} miles</li>
+						<li>Temperature {this.state.temp}</li>
+						<li>Feels like {this.state.feelslike}</li>
+						<li>Humidity {this.state.humidity}</li>
+						<li>Dewpoint {this.state.dewpoint}</li>
+						<li>Wind {this.state.wind}</li>
+					</ul>
+				</Card.Description>
+			</Card.Content>
+			<Card.Content extra>
+				{this.state.time}
+			</Card.Content>
+		</Card>
+		)
+	}
+	
 	
 	componentDidMount() {
 		axios.get(this.state.url)

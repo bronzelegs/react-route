@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import './news.css';
+import {Card, Icon, Item, Image} from 'semantic-ui-react'
 
 class News extends Component {
 	constructor(props) {
@@ -15,34 +16,37 @@ class News extends Component {
 	
 	render() {
 		return (
-			<div className="section news">
-				<h4>Top News from NYT</h4>
-				{this.state.stories.map(item =>
-					<div key={item.asset_id}>
-						<a href={item.url}> {item.title}</a>
-						<p>
-							{item.byline.toLowerCase().split(' ').map(word =>
-								word[0].toUpperCase() + word.substr(1)
-							).join(' ')
-							}
-							{item.publish_date} in {item.source} {item.section}
-						</p>
-						<p>
-							{item.abstract}
-						</p>
-						<p>
+			<div className="section ">
+				
+				<Item.Group>
+					<h2>Top News from NYT</h2>
+					{this.state.stories.map(item =>
+						<Item>
 							{item.media.map(media =>
-								<img src={media['media-metadata'][2].url} alt={media.caption}/>
+								<Item.Image size='small' src={media['media-metadata'][2].url} alt={media.caption}/>
 							)}
-						</p>
-						<hr/>
-					</div>
-				)}
+							<Item.Content>
+								<Item.Header><a href={item.url}> {item.title}</a></Item.Header>
+								<Item.Extra>{item.byline.toLowerCase().split(' ')
+									.map(word =>
+										word[0].toUpperCase() + word.substr(1)
+									).join(' ')}
+								</Item.Extra>
+								<Item.Meta>Abstract</Item.Meta>
+								<Item.Description>
+									{item.abstract}
+								</Item.Description>
+								<Item.Extra>{item.publish_date} in {item.source} {item.section}
+								</Item.Extra>
+							</Item.Content>
+						</Item>
+					)}
+				</Item.Group>
 			</div>
 		)
 	}
 	
-	
+
 	componentDidMount() {
 		axios.get(this.state.url)
 			.then(res => {

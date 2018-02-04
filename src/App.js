@@ -4,7 +4,7 @@ import './app.css';
 import Weather from './weather.js';
 import News from './news.js';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
-
+import {Card, Icon, Item, Image} from 'semantic-ui-react'
 
 class App extends Component {
 
@@ -47,9 +47,9 @@ class Home extends Component {
 	render() {
 		return (
 			<div className="topsection">
-				<h3>
+				<h2>
 					Welcome to a simple react app.
-				</h3>
+				</h2>
 				<p>I made this for fun, all in all react is pretty simple. </p>
 				<p>You can display the weather <Link to="/weather">Weather</Link> or read the New York Times 
 					<Link to="/news">News</Link> feed.
@@ -70,7 +70,7 @@ class About extends Component {
 	render() {
 		return (
 			<div className="section">
-				<h4>About</h4>
+				<h2>About</h2>
 				<p className="about">
 
 					<p>This is a simple react app using some basic things, a router, http, and etc.</p>
